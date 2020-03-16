@@ -1,0 +1,24 @@
+.content {
+    padding: 3rem 3rem 0 3rem;
+}
+
+.routes {
+    padding: 2rem 1rem;
+}
+
+.routes-title {
+    font-weight: lighter;
+}
+
+.history-list {
+    padding: .5rem 0;
+}
+.history-list li {
+    list-style: none;
+}
+.history-list li a {
+    display: inline-block;
+    margin-right: 1em;
+    text-decoration: none;
+    color: #6495ED;
+}

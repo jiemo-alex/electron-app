@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electron 编辑器（Demo）</title>
+    <link rel="stylesheet" href="../static/styles/index.css" />
+    <link rel="stylesheet" href="../static/styles/home.css" />
+</head>
+<body>
+    <div class="content">
+        <h2 class="text-center color-base">Electron 编辑器（Demo）</h2>
+        <div class="text-center routes">
+            <!-- <input type="file" id="ctrl" webkitdirectory directory multiple /> -->
+            <a class="btn" href="#" id="open-file">打开文件</a>
+            <a class="btn" href="#" id="open-dir">打开目录</a>
+        </div>
+    </div>
+
+    <div class="content color-base">
+        <h3 class="color-base">最近访问</h3>
+        <ul class="history-list">
+            <li><a href="#" dir="~/dev/learn/vue-project">vue-project</a> ~/dev/learn</li>
+            <li><a href="#" dir="~/dev/learn/electron">electron</a> ~/dev/learn</li>
+        </ul>
+    </div>
+
+    <script src="../renderer/index.js"></script>
+</body>
+</html>
