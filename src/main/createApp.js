@@ -2,7 +2,6 @@ const { app, BrowserWindow } = require('electron')
 const { autoUpdater } = require("electron-updater");
 const gfs = require('graceful-fs')
 const path = require('path')
-const updateApp = require('update-electron-app')
 
 function createApp(createWindow) {
   // 选择路径的信息
@@ -35,7 +34,7 @@ function createApp(createWindow) {
   }
 
   app.whenReady().then(createWindow).then(_ => {
-    updateApp()
+    autoUpdater.checkForUpdatesAndNotify();
   })
 
   return app
