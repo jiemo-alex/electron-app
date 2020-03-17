@@ -4,20 +4,45 @@
   "main": "src/main/index.js",
   "scripts": {
     "test": "mocha",
-    "dev": "electron ."
+    "dev": "electron .",
+    "dist": "electron-builder"
   },
   "author": "Alex",
   "license": "ISC",
   "description": "Test electron",
+  "repository": "jiemo-alex/electron-app",
   "devDependencies": {
     "chai": "^4.2.0",
     "electron": "^8.1.1",
+    "electron-builder": "^22.4.1",
     "mocha": "^7.1.0",
     "spectron": "^10.0.1"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
+    "electron-updater": "^4.2.5",
     "graceful-fs": "^4.2.3",
-    "jquery": "^3.4.1"
+    "jquery": "^3.4.1",
+    "update-electron-app": "^1.5.0",
+    "walkdir": "^0.4.1"
+  },
+  "build": {
+    "appId": "com.electron.demoEditor",
+    "productName": "native-test",
+    "publish": {
+      "provider": "generic",
+      "url": "http://127.0.0.1:8080/"
+    }
+  },
+  "win": {
+    "target": [
+      "nsis"
+    ]
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": true,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true
   }
 }

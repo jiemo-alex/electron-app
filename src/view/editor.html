@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electron 编辑器（Demo）</title>
+    <link rel="stylesheet" href="../static/styles/index.css" />
+    <link rel="stylesheet" href="../static/styles/editor.css" />
 </head>
 <body>
-    
+    <div class="content">
+        <ul id="file-list" class="file-list">
+            <!-- file  list -->
+        </ul>
+
+        <div class="text-box">
+            <div>
+                <a href="#" id="save-btn" class="btn">保存</a>
+                <span id="save-success">保存成功</span>
+            </div>
+            <textarea id="text-content" class="color-base"></textarea>
+        </div>
+    </div>
+
+    <script src="../renderer/editor.js"></script>
 </body>
-<script>
-    console.log(window.location.href)
-</script>
 </html>

@@ -1,13 +1,8 @@
 const { ipcRenderer } = require('electron')
-const { SELECT_TYPE_FILE, SELECT_TYPE_DIR } = require('../common/constants')
+const { SELECT_TYPE_DIR } = require('../common/constants')
 
-const elementOpenFile = document.getElementById('open-file')
 const elementOpenDir = document.getElementById('open-dir')
-
-elementOpenFile.onclick = event => {
-  event.preventDefault()
-  ipcRenderer.send('async-select', SELECT_TYPE_FILE)
-}
+const elementHistoryList = document.getElementById('history-list')
 
 elementOpenDir.onclick = event => {
   event.preventDefault()
@@ -17,3 +12,22 @@ elementOpenDir.onclick = event => {
 ipcRenderer.on('async-select-reply', (event, path) => {
   console.log(path)
 })
+
+ipcRenderer.on('load-history-reply', (event, histories) => {
+  histories.forEach(history => {
+    const li = document.createElement('li')
+    const a = document.createElement('a')
+    a.href = "#"
+    a.innerText = history
+    li.appendChild(a)
+    a.onclick = event => {
+      event.preventDefault()
+      ipcRenderer.send('async-load-path', history)
+    }
+
+    elementHistoryList.appendChild(li)
+  });
+})
+
+
+ipcRenderer.send('async-load-history')
