@@ -9,11 +9,11 @@ elementOpenDir.onclick = event => {
   ipcRenderer.send('async-select', SELECT_TYPE_DIR)
 }
 
-ipcRenderer.on('async-select-reply', (event, path) => {
+ipcRenderer.on('async-select-reply', (_, path) => {
   console.log(path)
 })
 
-ipcRenderer.on('load-history-reply', (event, histories) => {
+ipcRenderer.on('load-history-reply', (_, histories) => {
   histories.forEach(history => {
     const li = document.createElement('li')
     const a = document.createElement('a')
@@ -28,6 +28,5 @@ ipcRenderer.on('load-history-reply', (event, histories) => {
     elementHistoryList.appendChild(li)
   });
 })
-
 
 ipcRenderer.send('async-load-history')

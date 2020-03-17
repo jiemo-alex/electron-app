@@ -39,10 +39,10 @@ function saveHistoryFile(storePath, dirPath) {
   })
 }
 
-function saveFile(content, callback) {
+function saveFile(fileName, content, callback) {
   const { dirInfo } = global.sharedObject
-  if (null !== dirInfo.currentFile) {
-    const localPath = path.join(dirInfo.basePath, dirInfo.currentFile)
+  if (null !== fileName) {
+    const localPath = path.join(dirInfo.basePath, fileName)
     gfs.writeFile(localPath, content, err => {
       if (!err) {
         callback()

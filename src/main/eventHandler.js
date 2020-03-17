@@ -5,20 +5,18 @@ const { saveHistoryFile, saveFile } = require('../common/common')
 
 module.exports = function eventHandler(win) {
   const historyFile = path.join(app.getPath('appData'), 'histories.json')
-
   const { dirInfo } = global.sharedObject
 
   // 加载编辑器页面
-  const loadPath = localPath => {
+  const loadPath = (localPath, callback = false) => {
     dirInfo.basePath = localPath
     gfs.readdir(localPath, {encoding: 'utf8'}, (_, files) => {
-      dirInfo.currentFiles = files
       saveHistoryFile(historyFile, localPath)
-      win.webContents.loadFile('src/view/editor.html')
+      callback && callback(files)
     })
   }
 
-  // 选择系统路径
+  // 选择系统路径并加载编辑器页面
   // https://www.electronjs.org/docs/api/dialog
   ipcMain.on('async-select', (_, type) => {
     const result = dialog.showOpenDialog({
@@ -26,31 +24,37 @@ module.exports = function eventHandler(win) {
     })
     result.then(({canceled, filePaths}) => {
       if (!canceled) {
-        loadPath(filePaths[0])
+        loadPath(filePaths[0], () => {
+          win.webContents.loadFile('src/view/editor.html')
+        })
       }
     })
   })
 
+  // 通过路径加载编辑器页面
   ipcMain.on('async-load-path', (_, localPath) => {
-    loadPath(localPath)
+    loadPath(localPath, () => {
+      win.webContents.loadFile('src/view/editor.html')
+    })
   })
 
   ipcMain.on('async-load-files', (event) => {
-    event.reply('load-files-reply', dirInfo)
+    loadPath(dirInfo.basePath, (files) => {
+      event.reply('load-files-reply', [files, dirInfo.basePath])
+    })
   })
 
   ipcMain.on('async-load-file', (event, fileName) => {
     const localPath = path.join(dirInfo.basePath, fileName)
     gfs.readFile(localPath, {encoding: 'utf8'}, (err, data) => {
       if (!err) {
-        dirInfo.currentFile = fileName
         event.reply('load-file-reply', {fileName, data})
       }
     })
   })
 
-  ipcMain.on('async-save-file', (event, {content}) => {
-    saveFile(content, () => {
+  ipcMain.on('async-save-file', (event, {fileName, content}) => {
+    saveFile(fileName, content, () => {
       event.reply('save-file-reply')
     })
   })

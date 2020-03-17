@@ -5,17 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electron 编辑器（Demo）</title>
     <link rel="stylesheet" href="../static/styles/index.css" />
+    <link rel="stylesheet" href="../static/styles/dialog.css" />
     <link rel="stylesheet" href="../static/styles/editor.css" />
 </head>
 <body>
+
+    <div id="dialog-wrapper" class="dialog-wrapper">
+        <div class="dialog color-base">
+            <header><p><strong>请输入文件名称</strong></p></header>
+            <input type="text" id="dialog-input" class="dialog-input" value="新建文件.txt" />
+            <div class="dialog-ctrl">
+                <a id="dialog-active" class="btn-sm btn-blue" href="#">确定</a>
+                <a id="dialog-cancel" class="btn-sm" href="#">取消</a>
+            </div>
+        </div>
+    </div>
+
     <div class="content">
         <ul id="file-list" class="file-list">
+            <h3 class="border-bottom">目录</h3>
             <!-- file  list -->
         </ul>
 
         <div class="text-box">
             <div>
-                <a href="#" id="save-btn" class="btn">保存</a>
+                <a href="#" id="new-btn" class="btn-sm btn-blue">新建</a>
+                <a href="#" id="save-btn" class="btn-sm btn-blue">保存</a>
                 <span id="save-success">保存成功</span>
             </div>
             <textarea id="text-content" class="color-base"></textarea>
