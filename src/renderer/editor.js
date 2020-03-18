@@ -1,13 +1,13 @@
 const { ipcRenderer } = require('electron')
 
 const elementFileList = document.getElementById('file-list')
-const elementFileListLis = document.getElementById('file-list-lis')
 const elementNewBtn = document.getElementById('new-btn')
 const elementSaveBtn = document.getElementById('save-btn')
 const elementDialogActive = document.getElementById('dialog-active')
 const elementDialogCancel = document.getElementById('dialog-cancel')
 const elementTextContent = document.getElementById('text-content')
 const elementSaveSuccess = document.getElementById('save-success')
+const elementDialogInput = document.getElementById('dialog-input')
 
 const store = {
   currentFile: null
@@ -36,9 +36,10 @@ function dialogCancel() {
 }
 
 function dialogShow() {
+  elementDialogInput.value = ''
   const element = document.getElementById('dialog-wrapper')
   element.style.display = 'block'
-  element.focus()
+  elementDialogInput.focus()
 }
 
 ipcRenderer.on('load-files-reply', (_, [currentFiles, basePath]) => {
@@ -92,7 +93,7 @@ elementNewBtn.onclick = event => {
 
 elementDialogActive.onclick = event => {
   event.preventDefault()
-  const fileName = document.getElementById('dialog-input').value
+  const fileName = elementDialogInput.value
   if (fileName) {
     createFile(fileName)
     dialogCancel()
