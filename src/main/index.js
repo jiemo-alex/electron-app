@@ -1,6 +1,6 @@
 require('dotenv').config()
 const path = require('path')
-const { BrowserWindow, Menu } = require('electron')
+const { BrowserWindow } = require('electron')
 const createApp = require('./createApp')
 const eventHandler = require('./eventHandler')
 const createMenu = require('./createMenu')
@@ -19,10 +19,8 @@ createApp(_ => {
   })
 
   eventHandler(win)
-
-  win.loadFile('src/view/index.html')
-
   createMenu(win)
+  win.loadFile('src/view/index.html')
 
   return win
 })

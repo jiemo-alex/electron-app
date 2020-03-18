@@ -10,24 +10,8 @@ function pathToUrl(...paths) {
   })
 }
 
-function loadDir(dir) {
-  var children = []
-  gfs.readdirSync(dir).forEach(function(filename){
-    var path = dir+"/"+filename
-    var stat = gfs.statSync(path)
-    if (stat && stat.isDirectory()) {
-      children = children.concat(loadDir(path))
-    }
-    else {
-      children.push(path)
-    }
-  })
- 
-    return children
-}
-
-function saveHistoryFile(storePath, dirPath) {
-  gfs.readFile(storePath, (err, data) => {
+function saveHistoryFile(storePath, dirPath, callback = null) {
+  return gfs.readFile(storePath, (err, data) => {
     if (err) {
       throw err
     }
@@ -35,7 +19,11 @@ function saveHistoryFile(storePath, dirPath) {
     gfs.writeFile(storePath, JSON.stringify([
       dirPath,
       ...json
-    ].slice(0, 6)))
+    ].slice(0, 6)), () => {
+      if (callback) {
+        callback()
+      }
+    })
   })
 }
 
@@ -53,7 +41,6 @@ function saveFile(fileName, content, callback) {
 
 module.exports = {
   pathToUrl,
-  loadDir,
   saveHistoryFile,
   saveFile
 }

@@ -1,19 +1,22 @@
 const chai = require('chai')
-const path = require('path')
 const chaiAsPromised = require("chai-as-promised");
 const expect = chai.expect
-const should = chai.should()
-chai.use(chaiAsPromised);
-const Application = require('spectron').Application
 
+global.before(function () {
+  chai.should();
+  chai.use(chaiAsPromised);
+});
+
+const Application = require('spectron').Application
 const app = new Application({
-  path: '/home/alex/dev/learn/electronDemo/native/dist/linux-unpacked/native-test'
+  path: '/project/edemos/electron-app/dist/win-unpacked/native-test.exe'
 })
 
-describe('End To End Test', () => {
+describe('End To End Test', function() {
+  this.timeout(15000)
   before(function () {
     chaiAsPromised.transferPromiseness = app.transferPromiseness;
-    return app.start();
+    return app.start()
   });
 
   after(function () {
@@ -22,9 +25,10 @@ describe('End To End Test', () => {
     }
   });
 
-  it('Only one window can be loaded', () => {
+  it('Only one window can be loaded', (done) => {
     app.client.waitUntilWindowLoaded().getWindowCount().then(count => {
       expect(count).to.equal(1)
+      done()
     })
   })
 

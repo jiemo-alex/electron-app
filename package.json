@@ -1,11 +1,11 @@
 {
   "name": "native-test",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "src/main/index.js",
   "scripts": {
     "test": "mocha",
     "dev": "electron .",
-    "dist": "NODE_ENV=production electron-builder"
+    "dist": "cross-env NODE_ENV=production electron-builder"
   },
   "author": "Alex",
   "license": "MIT",
@@ -14,6 +14,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "cross-env": "^7.0.2",
     "electron": "^8.1.1",
     "electron-builder": "^22.4.1",
     "mocha": "^7.1.0",
@@ -35,7 +36,8 @@
       "url": "http://127.0.0.1:8080/"
     },
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "icon": "build/icons/icon.ico"
     },
     "nsis": {
       "oneClick": false,
@@ -43,9 +45,7 @@
       "allowElevation": true,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
-      "runAfterFinish": false,
-      "installerIcon": "src/main/favicon.png",
-      "uninstallerIcon": "src/main/favicon.png"
+      "runAfterFinish": false
     }
   }
 }

@@ -39,10 +39,6 @@ function dialogShow() {
 }
 
 ipcRenderer.on('load-files-reply', (_, [currentFiles, basePath]) => {
-  new Notification('Electron Editor', {
-    body: '当前文件夹：' + basePath
-  })
-
   currentFiles.forEach(fileName => {
     const li = document.createElement('li')
     const a = document.createElement('a')
@@ -104,3 +100,7 @@ elementDialogCancel.onclick = event => {
 }
 
 reloadFileList()
+
+new Notification('Electron Editor', {
+  body: '当前文件夹：' + basePath
+})
