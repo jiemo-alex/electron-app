@@ -36,7 +36,9 @@ function dialogCancel() {
 }
 
 function dialogShow() {
-  document.getElementById('dialog-wrapper').style.display = 'block'
+  const element = document.getElementById('dialog-wrapper')
+  element.style.display = 'block'
+  element.focus()
 }
 
 ipcRenderer.on('load-files-reply', (_, [currentFiles, basePath]) => {
@@ -91,8 +93,10 @@ elementNewBtn.onclick = event => {
 elementDialogActive.onclick = event => {
   event.preventDefault()
   const fileName = document.getElementById('dialog-input').value
-  createFile(fileName)
-  dialogCancel()
+  if (fileName) {
+    createFile(fileName)
+    dialogCancel()
+  }
 }
 
 elementDialogCancel.onclick = event => {
@@ -103,5 +107,5 @@ elementDialogCancel.onclick = event => {
 reloadFileList()
 
 new Notification('Electron Editor', {
-  body: '当前文件夹：' + basePath
+  body: '文件夹打开了'
 })

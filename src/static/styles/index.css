@@ -35,3 +35,20 @@ body {
 .border-bottom {
     border-bottom: 1px solid #DDD;
 }
+
+.border {
+    border: 1px solid #CCC;
+}
+
+.hv {
+    min-height: 90%;
+    background-color: #FFF;
+}
+
+.overflow {
+    overflow: auto;
+}
+
+.overflow-none {
+    overflow: hidden;
+}

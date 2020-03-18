@@ -1,4 +1,5 @@
 const { app, Menu } = require('electron')
+const { SELECT_TYPE_DIR } = require('../common/constants')
 
 module.exports = win => {
   const template = [
@@ -30,6 +31,19 @@ module.exports = win => {
         },
       ]
     },
+
+    {
+      label: '转到(G)',
+      submenu: [
+        {
+          label: '主界面 (M)',
+          accelerator: 'CmdOrCtrl+M',
+          click: async () => {
+            win.loadFile('src/view/index.html')
+          }
+        }
+      ]
+    }
   ]
   const menu = Menu.buildFromTemplate(template)
   Menu.setApplicationMenu(menu)
