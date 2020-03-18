@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Electron 编辑器（Demo）</title>
     <link rel="stylesheet" href="../static/styles/index.css" />
     <link rel="stylesheet" href="../static/styles/dialog.css" />
@@ -22,18 +22,19 @@
     </div>
 
     <div class="content">
-        <ul id="file-list" class="file-list">
+        <div class="file-list">
             <h3 class="border-bottom">目录</h3>
+            <ul id="file-list"></ul>
             <!-- file  list -->
-        </ul>
+        </div>
 
         <div class="text-box">
+            <textarea id="text-content" class="color-base"></textarea>
             <div>
                 <a href="#" id="new-btn" class="btn-sm btn-blue">新建</a>
                 <a href="#" id="save-btn" class="btn-sm btn-blue">保存</a>
                 <span id="save-success">保存成功</span>
             </div>
-            <textarea id="text-content" class="color-base"></textarea>
         </div>
     </div>
 

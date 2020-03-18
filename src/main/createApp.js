@@ -10,7 +10,8 @@ function createApp(createWindow) {
       currentFiles: [],
       basePath: '',
       currentFile: null
-    }
+    },
+    hasUpdate: false
   }
 
   app.on('window-all-closed', () => {
@@ -34,7 +35,7 @@ function createApp(createWindow) {
   }
 
   app.whenReady().then(createWindow).then(_ => {
-    autoUpdater.checkForUpdatesAndNotify();
+    autoUpdater.checkForUpdatesAndNotify()
   })
 
   return app

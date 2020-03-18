@@ -9,7 +9,7 @@ global.before(function () {
 
 const Application = require('spectron').Application
 const app = new Application({
-  path: '/project/edemos/electron-app/dist/win-unpacked/native-test.exe'
+  path: '/home/alex/dev/learn/electronDemo/native/dist/linux-unpacked/native-test'
 })
 
 describe('End To End Test', function() {
@@ -41,7 +41,7 @@ describe('End To End Test', function() {
     expect(title).to.equal('Electron 编辑器（Demo）')
   })
 
-  it("Should show dialog", async () => {
+  it("Should show history list visiblity", async () => {
     const visible = await app.client.element('.history-list').element('li').isVisible()
     expect(visible).to.be.true
   })

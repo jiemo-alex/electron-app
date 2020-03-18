@@ -9,15 +9,19 @@
     max-width: 400px;
     min-height: 100vh;
     background-color: #FFF;
+    user-select: none;
 }
 
 .file-list h3 {
-    padding-bottom: 1rem;
+    padding-bottom: .5rem;
 }
 
 .file-list li {
     list-style: none;
     padding: .3rem;
+}
+.file-list li:hover {
+    background-color: rgb(255, 234, 220);
 }
 
 .file-list a {
@@ -29,7 +33,7 @@
 .text-box {
     min-height: 100vh;
     width: 100%;
-    padding: 1.3rem;
+    padding: 0 1.3rem;
 }
 
 .text-box textarea {
@@ -39,7 +43,8 @@
     border: 0;
     font-size: 16px;
     margin-top: .5rem;
-    background-color: #FFF;
+    background-color: #333;
+    color: #fff;
 
     outline:none;
     resize:none;

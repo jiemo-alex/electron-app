@@ -1,6 +1,7 @@
 const { ipcRenderer } = require('electron')
 
 const elementFileList = document.getElementById('file-list')
+const elementFileListLis = document.getElementById('file-list-lis')
 const elementNewBtn = document.getElementById('new-btn')
 const elementSaveBtn = document.getElementById('save-btn')
 const elementDialogActive = document.getElementById('dialog-active')

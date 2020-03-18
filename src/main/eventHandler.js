@@ -1,4 +1,4 @@
-const { app, ipcMain, dialog, getGlobal } = require('electron')
+const { app, ipcMain, dialog } = require('electron')
 const path = require('path')
 const gfs = require('graceful-fs')
 const { saveHistoryFile, saveFile } = require('../common/common')
